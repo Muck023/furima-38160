@@ -43,9 +43,6 @@
 
 | Column         | Type       | Options                       |
 | -------------- | ---------- | ----------------------------- |
-| card_number    |  integer   | null: false                   |
-| deadline       |  integer   | null: false                   |
-| seculitycode   |  integer   | null: false                   |
 | user           | references | null: false,foreign_key: true |
 | item           | references | null: false,foreign_key: true |
 
@@ -61,11 +58,11 @@
 | Column         | Type       | Options                       |
 | -------------- | ---------- | ----------------------------- |
 | postcode       |   string   | null: false                   |
-| prefecture_id  |  integer   | null: false                   |
+| region_id      |  integer   | null: false                   |
 | city           |   string   | null: false                   |
 | block          |   string   | null: false                   |
 | building       |   string   |                               |
-| phone_number   |  integer   | null: false                   |
+| phone_number   |   string   | null: false                   |
 | order          | references | null: false,foreign_key: true |
 
 ### Association
