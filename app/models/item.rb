@@ -9,4 +9,12 @@ class Item < ApplicationRecord
   validates :price,           presence: true, format: { with: /\A(?=.*?[3-9])\d{3,7}\z/ }
 
   belongs_to :user
+  has_one_attached :image
+  
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :status
+  belongs_to :defrayment
+  belongs_to :region
+  belongs_to :reach
 end
