@@ -33,8 +33,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it 'category_idに「---」が選択されている場合では登録できない' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
       it 'status_idが空では登録できない' do
         @item.status_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be blank")
+      end
+      it 'status_idに「---」が選択されている場合では登録できない' do
+        @item.status_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
@@ -43,13 +53,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Defrayment can't be blank")
       end
+      it 'defrayment_idに「---」が選択されている場合では登録できない' do
+        @item.defrayment_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Defrayment can't be blank")
+      end
       it 'region_idが空では登録できない' do
         @item.region_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Region can't be blank")
       end
+      it 'region_idに「---」が選択されている場合では登録できない' do
+        @item.region_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Region can't be blank")
+      end
       it 'reach_idが空では登録できない' do
         @item.reach_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Reach can't be blank")
+      end
+      it 'reach_idに「---」が選択されている場合では登録できない' do
+        @item.reach_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Reach can't be blank")
       end
@@ -72,6 +97,11 @@ RSpec.describe Item, type: :model do
         @item.price = '１０００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'userが紐づいていなければ登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
