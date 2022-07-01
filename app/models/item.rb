@@ -10,6 +10,7 @@ class Item < ApplicationRecord
                               format: { with: /\A3[0-9]{2}|[1-9][0-9]{3,6}\z/ }
 
   belongs_to :user
+  has_one :order
   has_one_attached :image
   validates :image, presence: true
 
