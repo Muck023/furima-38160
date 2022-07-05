@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order =Order.where(item_id: @item.id)
   end
 
   def edit
@@ -46,7 +47,8 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id
+    @order =Order.where(item_id: @item.id)
+    redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id && @order.blank?
   end
 
   def item_params
