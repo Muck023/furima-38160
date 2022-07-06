@@ -6,11 +6,9 @@ class OrderAddress
     validates :user_id, :item_id, :token
     validates :postcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
-    validates :city,               format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
-    validates :block,              format: { with: /\A[ぁ-んァ-ヶ一-龥々ー０-９]+\z/ }
+    validates :city, :block
     validates :phone_number,       format: { with: /\A\d{10,11}\z/ }
   end
-  validates :building, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー０-９]*\z/ }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
