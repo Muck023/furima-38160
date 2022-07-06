@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order = Order.where(item_id: @item.id)
   end
 
   def edit
@@ -44,11 +45,12 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-  
+
   def move_to_index
-    redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id
+    @order = Order.where(item_id: @item.id)
+    redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id && @order.blank?
   end
-  
+
   def item_params
     params.require(:item).permit(:image, :product, :message, :category_id, :status_id, :defrayment_id, :region_id, :reach_id,
                                  :price).merge(user_id: current_user.id)
