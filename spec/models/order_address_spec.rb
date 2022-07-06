@@ -33,7 +33,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postcodeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.postcode = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
       end
       it 'region_idに「---」が選択されている場合では保存できないこと' do
         @order_address.region_id = '1'
@@ -58,17 +58,17 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが9桁以内では保存できないこと' do
         @order_address.phone_number = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが12桁以上では保存できないこと' do
         @order_address.phone_number = '123456789012'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが半角数値でない場合保存できないこと' do
         @order_address.phone_number = '１２３４５６７８９０'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'userが紐付いていないと保存できないこと' do
         @order_address.user_id = nil
