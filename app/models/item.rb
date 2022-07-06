@@ -6,9 +6,8 @@ class Item < ApplicationRecord
   validates :defrayment_id,   presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :region_id,       presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :reach_id,        presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price,           presence: true, numericality: { only_integer: true },
-                              format: { with: /\A3[0-9]{2}|[1-9][0-9]{3,6}\z/ }
-
+  validates :price,           presence: true,
+                              numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
   belongs_to :user
   has_one :order
   has_one_attached :image
